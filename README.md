@@ -21,16 +21,38 @@ It interesting to notice that every REST HTTP get and put request start by two l
 
 ### Compilation
 
+No particular dependency to compile, tested on Java 8.
+
+```xml
+mvn clean install
+```
+
+### Usage
+
+Simply add the plugin to your Maven project.
+
+```xml
+        <dependency>
+            <groupId>org.kevoree.modeling.plugin</groupId>
+            <artifactId>rest</artifactId>
+            <version>4.27.0</version>
+        </dependency>
+```
+
+Then in you main or any kind of place of your Java platform, wrap the model into a Rest Gateway server and start it.
+
 ```java
 RestGateway gateway = RestGateway.expose(cloudModel, 8050);
 gateway.start();
 ```
 
-### Usage
+Replace the 8050 by the expected port where you want to expose your HTTP server.
 
-
+### Reference Rest API
 
 TODO
 
-### Reference Rest API
+### Credits
+
+This plugin leverage the great Undertow library in order to implement the HTTP server.
 
