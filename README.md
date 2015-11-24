@@ -18,7 +18,6 @@ In a nutshell, HTTP Path are mapped to KMF Queries to retreive or select KMF Obj
 In particular this REST offers the ability to manipulated model according to time and universes of KMF.
 It interesting to notice that every REST HTTP get and put request start by two long attribute `/0/10` the first one is the universe ID (virtually a working space) the second is simply a timestamp to reflect the time of the measurement. The KMF semamtic will return the closest well know time in case of GET and will update the current time for the 
 
-
 ### Compilation
 
 No particular dependency to compile, tested on Java 8.
