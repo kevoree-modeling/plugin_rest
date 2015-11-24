@@ -1,4 +1,4 @@
-# KMF Addons: Rest Gateway
+# KMF Plugin: Rest Gateway
 
 ### Introduction
 
