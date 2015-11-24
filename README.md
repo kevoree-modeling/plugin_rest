@@ -61,11 +61,11 @@ QUERY are FILTERS which are assembled such as PIPE in UNIX system.
 Therefore, first the PATH describe the reference UNIVERSE AND TIME that should be use to traverse the KMF Model.
 Later, QUERY elements, allows to collect object through the use of index (starting by @) or filters.
 
-In all following examples we will consider the following meta model
+In all following examples we will consider the following very simple meta model to illustrate snippets.
 
 ```java
 class Node {
-    att name: String
+    att name: String with index
     att load: Continuous
     rel processes: Process
 }
@@ -80,9 +80,36 @@ class Process {
 The **HTTP GET** operation allows to retrieve a JSON array composed by selected objects.
 Therefore the following
 
-``` java
+```
+http://localhost:8050/0/10/@Node
+```
+
+results in:
+
+```json
+[
+{"universe":0,"time":10,"uuid":1,"data":{"name":"node0","load":[0.0,1.0,0.0,0.0,0.0]}},
+{"universe":0,"time":10,"uuid":2,"data":{"name":"node1","load":[0.0,1.0,0.0,0.0,1.0]}},
+{"universe":0,"time":10,"uuid":3,"data":{"name":"node2","load":[0.0,1.0,0.0,0.0,2.0]}}
+]
+```
+
+However, the following line will select one particular object:
 
 ```
+http://localhost:8050/0/10/@Node[name=node1]
+```
+
+will return: 
+
+```json
+[
+{"universe":0,"time":10,"uuid":2,"data":{"name":"node1","load":[0.0,1.0,0.0,0.0,1.0]}}
+]
+```
+
+
+TODO continue will PIPED filter description...
 
 ##### PUT OPERATIONS
 

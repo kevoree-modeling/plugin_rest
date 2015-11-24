@@ -30,34 +30,39 @@ public class RestGateway implements HttpHandler {
         long universe = -1;
         long time = -1;
         if (parts.length >= 3) {
-            universe = Long.parseLong(parts[0]);
-            time = Long.parseLong(parts[1]);
-            StringBuilder concatQuery = new StringBuilder();
-            for (int i = 2; i < parts.length; i++) {
-                if (concatQuery.length() > 0) {
-                    concatQuery.append(" | ");
-                }
-                concatQuery.append(parts[i]);
-            }
-            httpServerExchange.dispatch();
-            _model.universe(universe).time(time).select(concatQuery.toString(), new KCallback<Object[]>() {
-                @Override
-                public void on(Object[] objects) {
-                    httpServerExchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "application/json");
-                    Sender sender = httpServerExchange.getResponseSender();
-                    StringBuilder builder = new StringBuilder();
-                    builder.append("[\n");
-                    for (int i = 0; i < objects.length; i++) {
-                        if (i != 0) {
-                            builder.append(",\n");
-                        }
-                        builder.append(((KObject) objects[i]).toString());
+            try {
+                universe = Long.parseLong(parts[0]);
+                time = Long.parseLong(parts[1]);
+                StringBuilder concatQuery = new StringBuilder();
+                for (int i = 2; i < parts.length; i++) {
+                    if (concatQuery.length() > 0) {
+                        concatQuery.append(" | ");
                     }
-                    builder.append("\n]\n");
-                    sender.send(builder.toString());
-                    httpServerExchange.endExchange();
+                    concatQuery.append(parts[i]);
                 }
-            });
+                httpServerExchange.dispatch();
+                _model.universe(universe).time(time).select(concatQuery.toString(), new KCallback<Object[]>() {
+                    @Override
+                    public void on(Object[] objects) {
+                        httpServerExchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "application/json");
+                        Sender sender = httpServerExchange.getResponseSender();
+                        StringBuilder builder = new StringBuilder();
+                        builder.append("[\n");
+                        for (int i = 0; i < objects.length; i++) {
+                            if (i != 0) {
+                                builder.append(",\n");
+                            }
+                            builder.append(((KObject) objects[i]).toString());
+                        }
+                        builder.append("\n]\n");
+                        sender.send(builder.toString());
+                        httpServerExchange.endExchange();
+                    }
+                });
+            } catch (Exception e){
+                httpServerExchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "text/plain");
+                httpServerExchange.getResponseSender().send("Bad API usage: "+e.getMessage());
+            }
         } else {
             httpServerExchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "text/plain");
             httpServerExchange.getResponseSender().send("Bad URL format");
