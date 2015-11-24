@@ -75,7 +75,7 @@ class Process {
 }
 ```
 
-#### GET OPERATIONS
+##### GET OPERATIONS
 
 The **HTTP GET** operation allows to retrieve a JSON array composed by selected objects.
 Therefore the following
@@ -84,10 +84,11 @@ Therefore the following
 
 ```
 
+##### PUT OPERATIONS
 
 TODO
 
-### Credits
+### Dependencies
 
 This plugin leverage the great Undertow library in order to implement the HTTP server.
 
