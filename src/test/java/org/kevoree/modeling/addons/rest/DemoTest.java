@@ -32,11 +32,11 @@ public class DemoTest {
         MetaModel mm = new MetaModel("Cloud");
         KMetaClass node_class = mm.addMetaClass("Node");
         node_class.addAttribute("name", KPrimitiveTypes.STRING).setKey(true);
-        node_class.addAttribute("load", KPrimitiveTypes.CONTINUOUS);
+        node_class.addAttribute("load", KPrimitiveTypes.DOUBLE);
 
         KMetaClass process_class = mm.addMetaClass("Process");
         process_class.addAttribute("name", KPrimitiveTypes.STRING);
-        node_class.addAttribute("load", KPrimitiveTypes.CONTINUOUS);
+        node_class.addAttribute("load", KPrimitiveTypes.DOUBLE);
 
         return mm.createModel(DataManagerBuilder.buildDefault());
 

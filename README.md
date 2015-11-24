@@ -88,9 +88,9 @@ results in:
 
 ```json
 [
-{"universe":0,"time":10,"uuid":1,"data":{"name":"node0","load":[0.0,1.0,0.0,0.0,0.0]}},
-{"universe":0,"time":10,"uuid":2,"data":{"name":"node1","load":[0.0,1.0,0.0,0.0,1.0]}},
-{"universe":0,"time":10,"uuid":3,"data":{"name":"node2","load":[0.0,1.0,0.0,0.0,2.0]}}
+{"universe":0,"time":10,"uuid":1,"data":{"name":"node0","load":0.0}},
+{"universe":0,"time":10,"uuid":2,"data":{"name":"node1","load":1.0}},
+{"universe":0,"time":10,"uuid":3,"data":{"name":"node2","load":2.0}}
 ]
 ```
 
@@ -104,10 +104,9 @@ will return:
 
 ```json
 [
-{"universe":0,"time":10,"uuid":2,"data":{"name":"node1","load":[0.0,1.0,0.0,0.0,1.0]}}
+{"universe":0,"time":10,"uuid":2,"data":{"name":"node1","load":1.0}}
 ]
 ```
-
 
 TODO continue will PIPED filter description...
 
