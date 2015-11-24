@@ -49,6 +49,42 @@ Replace the 8050 by the expected port where you want to expose your HTTP server.
 
 ### Reference Rest API
 
+The REST API allows two kind of operations: GET and PUT
+Both share the same **PATH** schema.
+
+```
+/<UNIVERSE_ID>/<TIME_ID>/<QUERY_1>/<QUERY_2>... /<QUERY_N>
+```
+
+In short, the PATH allows to select a set of KMF objects.
+QUERY are FILTERS which are assembled such as PIPE in UNIX system.
+Therefore, first the PATH describe the reference UNIVERSE AND TIME that should be use to traverse the KMF Model.
+Later, QUERY elements, allows to collect object through the use of index (starting by @) or filters.
+
+In all following examples we will consider the following meta model
+
+```java
+class Node {
+    att name: String
+    att load: Continuous
+    rel processes: Process
+}
+class Process {
+    att name: String
+    att load: Continuous
+}
+```
+
+#### GET OPERATIONS
+
+The **HTTP GET** operation allows to retrieve a JSON array composed by selected objects.
+Therefore the following
+
+``` java
+
+```
+
+
 TODO
 
 ### Credits
