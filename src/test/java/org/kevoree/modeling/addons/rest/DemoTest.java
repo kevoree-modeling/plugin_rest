@@ -21,6 +21,11 @@ public class DemoTest {
                     KObject nodeLoop = cloudModel.createByName("Node", 0, i);
                     nodeLoop.setByName("name", "node" + i);
                     nodeLoop.setByName("load", i);
+
+                    KObject subProcessLoop = cloudModel.createByName("Process", 0, i);
+                    subProcessLoop.setByName("name", "process" + i);
+                    subProcessLoop.setByName("load", i);
+                    nodeLoop.addByName("processes", subProcessLoop);
                 }
                 RestGateway gateway = RestGateway.expose(cloudModel, 8050);
                 gateway.start();
@@ -36,10 +41,11 @@ public class DemoTest {
 
         KMetaClass process_class = mm.addMetaClass("Process");
         process_class.addAttribute("name", KPrimitiveTypes.STRING);
-        node_class.addAttribute("load", KPrimitiveTypes.DOUBLE);
+        process_class.addAttribute("load", KPrimitiveTypes.DOUBLE);
+
+        node_class.addRelation("processes", process_class, null);
 
         return mm.createModel(DataManagerBuilder.buildDefault());
-
     }
 
     public static void main(String[] args) {

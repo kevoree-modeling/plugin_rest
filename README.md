@@ -108,13 +108,51 @@ will return:
 ]
 ```
 
-TODO continue will PIPED filter description...
+on Unix machine this can be test using the `curl` command such as:
 
-##### PUT OPERATIONS
+```sh
+curl "http://localho`st:8050/0/1/@Node%5Bname=node1%5D"
+```
 
-TODO
+`%5B == [`, remember that URL should be encoded for special characters
+
+##### PIPED FILTERS
+
+As KMF Query, FILTERS can be piped il order to filter result from the server side.
+For instance the following query:
+
+```sh
+curl http://localhost:8050/0/10/@Node[name=node1]/processes[name=process*]
+```
+
+Will collect sub processes of of node1, beginning by the name process.
+Please read the KMF Query section in order to have all potential query.
+
+##### POST OPERATIONS
+
+The HTTP post operation can be leverage to put data into the model.
+Similarly to GET operation, the PATH select objects that will be modified, and the POST payload, describe as key/values.
+This set of ket/values will be injected on all selected objects.
+This can be executed through the next command:
+
+```sh
+curl --data "load=42" "http://localhost:8050/0/1/@Node%5Bname=node1%5D"
+```
+
+Now the following command:
+
+```json
+curl "http://localho`st:8050/0/1/@Node%5Bname=node1%5D"
+```
+
+Will reply:
+
+```json
+[
+{"universe":0,"time":1,"uuid":2,"data":{"name":"node1","load":42.0}}
+]
+```
 
 ### Dependencies
 
 This plugin leverage the great Undertow library in order to implement the HTTP server.
-
