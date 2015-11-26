@@ -111,7 +111,7 @@ will return:
 on Unix machine this can be test using the `curl` command such as:
 
 ```sh
-curl "http://localho`st:8050/0/1/@Node%5Bname=node1%5D"
+curl "http://localhost:8050/0/1/@Node%5Bname=node1%5D"
 ```
 
 `%5B == [`, remember that URL should be encoded for special characters
