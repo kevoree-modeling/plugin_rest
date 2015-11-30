@@ -6,7 +6,7 @@ This addon, designed for any KMF offers a generic way to interact with model (re
 This addon is implemented as a server that can be embedded in any Java project (JS version to come in NodeJS soon).
 
 The goal of such Rest Server is to offers a **standard way to interact with model** for devices that cann't run for technical reasons KMF API.
-For instance, **Arduino** or **ESP 8266** based devices (AVR processor) can't for memory reason load the fll KMF stack.
+For instance, **Arduino** or **ESP 8266** based devices (AVR processor) can't for memory reason load the full KMF stack.
 However, they are powerful enough to load an HTTP stack and theirfore they can through such connection push data to a model.
 Such usage make particular sense because Arduino like devices host usually sensors, they should be considered as edges in IoT networks.
 
